@@ -1,6 +1,3 @@
-// initialize variables from existing html and css
-// var timeDisplayEl = $('#currentDay');
-
 // array of objects to store hour value (for past/present/future color checking), time to display, and index. can moment take a 1pm and interpret it as 1300? answer: no. solution: one variable to count hours military style, one to display the time to the page
 /* var todayAgenda = [
     {
@@ -78,6 +75,7 @@ function displayDate() {
     $("#currentDay").text(todaysDate.format('dddd, MMMM Do'));
 }
 
+// this function handles the color of the agenda boxes; it pulls the current hour and sets it as an integer, and then finds each column element and checks the id of that column element against the current hour, setting it to gray if less than, red if equal to, and green if greater than
 function boxColor() {
     var currentHour = parseInt(moment().hour());
     // console.log(currentHour);
@@ -94,6 +92,16 @@ function boxColor() {
         }
     })
 }
+
+// save button handler
+$(".saveBtn").on("click", function(event) {
+    event.preventDefault();
+    // targets the button's sibling text area, saves the id of that text area which is the time, then saves the value of the textarea, which is the task itself
+    var saveTime = $(this).siblings("textarea").attr("id");
+    var saveTask = $(this).siblings("textarea").val();
+    // save these variables to local storage as a key and value pairing
+    localStorage.setItem(saveTime, saveTask);
+})
 
 // sets the interval to 1 IRL sec for the date display, box coloring, 
 setInterval(displayDate, 1000);
