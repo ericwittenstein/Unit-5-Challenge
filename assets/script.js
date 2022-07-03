@@ -1,8 +1,8 @@
 // initialize variables from existing html and css
-var timeDisplayEl = $('#currentDay');
+// var timeDisplayEl = $('#currentDay');
 
 // array of objects to store hour value (for past/present/future color checking), time to display, and index. can moment take a 1pm and interpret it as 1300? answer: no. solution: one variable to count hours military style, one to display the time to the page
-var todayAgenda = [
+/* var todayAgenda = [
     {
         indexId: "0",
         hourOfTheDay: "09",
@@ -57,27 +57,44 @@ var todayAgenda = [
         timeToDisplay: "5pm",
         task: ""
     },
-]
+]*/
 
-// var testMoment = moment();
-// console.log(testMoment.format("HH"));
+// pulled this function from a stack answer after googling how to save to local storage and this seemed like the simplest answer. basically takes the value of the day array items and turns them into strings
+// function saveAgenda() {
+//     localStorage.setItem("Today's Agenda", JSON.stringify(todayAgenda));
+// }
+
+// this function *should* pull info from local storage and display it to the calendar. not sure how to run through a local storage array though, gonna check with tutoring for help
+// function displayAgenda() {
+//     todayAgenda.forEach(function (eachHour) {
+//     });
+// }
+
+// EVERYTHING ABOVE THIS LINE CAN BE DELETED IF EVERYTHING BELOW THIS LINE WORKS
 
 // displays the date at the top of the page
 function displayDate() {
-    var rightNow = moment().format('dddd, MMMM Do');
-    timeDisplayEl.text(rightNow);
+    var todaysDate = moment();
+    $("#currentDay").text(todaysDate.format('dddd, MMMM Do'));
 }
 
-// pulled this function from a stack answer after googling how to save to local storage and this seemed like the simplest answer. basically takes the value of the day array items and turns them into strings
-function saveAgenda() {
-    localStorage.setItem("Today's Agenda", JSON.stringify(todayAgenda));
+function boxColor() {
+    var currentHour = parseInt(moment().hour());
+    // console.log(currentHour);
+    $(".col").each(function () {
+        var agendaHour = parseInt($(this).attr("id"));
+        if (agendaHour < currentHour) {
+            $(this).addClass("past");
+        }
+        else if (agendaHour == currentHour) {
+            $(this).addClass("present");
+        }
+        else if (agendaHour > currentHour) {
+            $(this).addClass("future");
+        }
+    })
 }
 
-// this function *should* pull info from local storage and display it to the calendar. not sure how to run through a local storage array though, gonna check with tutoring for help
-function displayAgenda() {
-    todayAgenda.forEach(function (eachHour) {
-    });
-}
-
-// sets the date interval to 1 IRL sec
+// sets the interval to 1 IRL sec for the date display, box coloring, 
 setInterval(displayDate, 1000);
+setInterval(boxColor, 1000);

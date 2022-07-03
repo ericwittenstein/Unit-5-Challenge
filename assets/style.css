@@ -2,6 +2,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  padding: 0% 2% 3%;
 }
 
 textarea {
@@ -19,6 +20,7 @@ textarea {
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+  padding: 2%;
 }
 
 .description {
@@ -40,10 +42,12 @@ textarea {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  width: 7%;
+  text-align: right;
 }
 
 .past {
-  background-color: gray;
+  background-color: lightgray;
   color: white;
 }
 
@@ -53,7 +57,7 @@ textarea {
 }
 
 .future {
-  background-color: greenyellow;
+  background-color: lightgreen;
   color: white;
 }
 
