@@ -11,7 +11,7 @@
 
 [URL of Deployed Application](https://ericwittenstein.github.io/Unit-5-Challenge/)
 
-![screen recording of functional deployed site](./Assets/images/.....)
+![screen recording of functional deployed site](./assets/images/Unit5Demo.gif)
 
 <!-- EHW SIGNET
 ---------
